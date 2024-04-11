@@ -23,3 +23,22 @@ function query($query)
 
   return  $rows;
 }
+
+function tambah($data)
+{
+  $conn = koneksi();
+
+  $id = htmlspecialchars($data['id_menu']);
+  $nama = htmlspecialchars($data['nama_menu']);
+  $harga = htmlspecialchars($data['harga_menu']);
+  $foto = htmlspecialchars($data['foto_menu']);
+
+  $query = "INSERT INTO
+              menu (id_menu, nama_menu, harga_menu, foto_menu)
+            VALUES 
+            ('$id', '$nama', '$harga', '$foto');
+            ";
+  mysqli_query($conn, $query);
+  echo mysqli_errno($conn);
+  return mysqli_affected_rows($conn);
+}

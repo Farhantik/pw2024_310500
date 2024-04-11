@@ -14,6 +14,9 @@ $menu = query("SELECT * FROM menu");
 <body>
   <h3>Daftar Menu</h3>
 
+  <a href="tambah.php">Tambah Data Menu</a>
+  <br><br>
+
   <table border="1" cellpadding="10" cellspacing="0">
     <tr>
       <th>#</th>
