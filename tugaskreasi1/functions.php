@@ -66,3 +66,17 @@ function ubah($data)
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
+
+function cari($keyword)
+{
+  $conn = koneksi();
+  $query = "SELECT * FROM menu 
+              WHERE nama_menu LIKE '%$keyword%'";
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return  $rows;
+}

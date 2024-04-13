@@ -1,6 +1,11 @@
 <?php
 require 'functions.php';
 $menu = query("SELECT * FROM menu");
+
+// ketika tombol cari diklik
+if (isset($_POST['cari'])) {
+  $menu = cari($_POST['keyword']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +22,12 @@ $menu = query("SELECT * FROM menu");
   <a href="tambah.php">Tambah Data Menu</a>
   <br><br>
 
+  <form action="" method="POST">
+    <input type="text" name="keyword" size="40" placeholder="masukkan keyword pencarian..." autocomplete="off" autofocus>
+    <button type="submit" name="cari">Cari!</button>
+  </form>
+  <br>
+
   <table border="1" cellpadding="10" cellspacing="0">
     <tr>
       <th>#</th>
@@ -25,6 +36,15 @@ $menu = query("SELECT * FROM menu");
       <th>harga_menu</th>
       <th>Aksi</th>
     </tr>
+
+    <?php if (empty($menu)) : ?>
+      <tr>
+        <td colspan="5">
+          <p style="color: red; font-style: italic;">data menu tidak ditemukan!</p>
+        </td>
+      </tr>
+    <?php endif; ?>
+
 
     <?php $i = 1;
     foreach ($menu as $m) : ?>
