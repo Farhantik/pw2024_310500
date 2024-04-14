@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: wheat;
+            background: url('img5.jpg') no-repeat;
             background-size: cover;
             background-position: center;
         }
