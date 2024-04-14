@@ -196,7 +196,7 @@
     <div class="sidebar">
         <h2>Sidebar</h2>
         <ul>
-            <li><a href="halaman.php">Beranda</a></li>
+            <li><a href="index.php">Beranda</a></li>
             <!-- <li><a href="detail.php">1</a></li> -->
             <li><a href="product.php">Produk</a></li>
             <li><a href="login.php">logout</a></li>
