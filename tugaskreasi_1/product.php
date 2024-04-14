@@ -160,7 +160,7 @@
 
         .product-item a {
             text-decoration: none;
-            color: white;
+            color: #333;
         }
 
         .product-item[id="q"] img {
