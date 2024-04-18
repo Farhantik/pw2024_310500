@@ -153,10 +153,12 @@ if (isset($_POST["registrasi"])) {
             <input type="password" name="password2" required>
           </label>
         </li>
-        <li>
-          <button type="submit" name="registrasi">Registrasi</button>
-        </li>
-        <li><button><a href="logout.php" name="kembali">Kembali</a></button></li>
+
+        <input type="submit" name="registrasi" value="Registrasi">
+        <div class="back-link">
+          <a href="logout.php" name="kembali">Kembali</a>
+        </div>
+
       </ul>
     </form>
 </body>

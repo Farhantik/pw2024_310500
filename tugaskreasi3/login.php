@@ -49,7 +49,7 @@ if (isset($_POST["login"])) {
       color: #f4f4f4;
     }
 
-    .login-container h2 {
+    .login-container h3 {
       text-align: center;
     }
 
@@ -125,7 +125,7 @@ if (isset($_POST["login"])) {
 
     }
 
-    h2 {
+    h3 {
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     }
@@ -153,12 +153,14 @@ if (isset($_POST["login"])) {
             <input type="password" name="password">
           </label>
         </li>
-        <li>
-          <button type="submit" name="login">Login</button>
-        </li>
-        <li>
-          <button><a href="registrasi.php">Tambah User Baru</a></button>
-        </li>
+        <input type="submit" name="login" value="Login">
+
+
+        <div class="back-link">
+          <a href="registrasi.php">Tambah User Baru</a>
+
+        </div>
+
       </ul>
     </form>
   </div>

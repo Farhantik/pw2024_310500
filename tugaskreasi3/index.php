@@ -216,6 +216,11 @@ if (isset($_POST['cari'])) {
     <br>
     <div class="container">
 
+
+
+      <?php $i = 1;
+      foreach ($menu as $m) : ?>
+      <?php endforeach; ?>
     </div>
 
 

@@ -32,11 +32,12 @@ function tambah($data)
   $nama = htmlspecialchars($data['nama_menu']);
   $harga = htmlspecialchars($data['harga_menu']);
   $foto = htmlspecialchars($data['foto_menu']);
+  $deskripsi = htmlspecialchars($data['deskripsi_menu']);
 
   $query = "INSERT INTO
-              menu (nama_menu, harga_menu, foto_menu)
+              menu 
             VALUES 
-            ('$nama', '$harga', '$foto');
+            ('null', '$nama', '$harga', '$foto', '$deskripsi')
             ";
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
@@ -57,12 +58,14 @@ function ubah($data)
   $nama = htmlspecialchars($data['nama_menu'] ?? '');
   $harga = htmlspecialchars($data['harga_menu'] ?? '');
   $foto = htmlspecialchars($data['foto_menu'] ?? '');
+  $deskripsi = htmlspecialchars($data['deskripsi_menu'] ?? '');
 
   $query = "UPDATE menu SET
-              nama_menu = '$nama',
-              harga_menu = '$harga',
-              foto_menu = '$foto'
-              WHERE id_menu = $id";
+  nama_menu = '$nama',
+  harga_menu = '$harga',
+  foto_menu = '$foto',
+  deskripsi_menu = '$deskripsi'
+  WHERE id_menu = $id";
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
