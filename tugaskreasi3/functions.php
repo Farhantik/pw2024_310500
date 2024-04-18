@@ -24,6 +24,61 @@ function query($query)
   return  $rows;
 }
 
+function upload()
+{
+  $nama_file =  $_FILES['foto_menu']['name'];
+  $tipe_file = $_FILES['foto_menu']['type'];
+  $ukuran_file = $_FILES['foto_menu']['size'];
+  $error = $_FILES['foto_menu']['error'];
+  $tmp_file = $_FILES['foto_menu']['tmp_name'];
+
+  // cek ekstensi file
+  $daftar_foto = ['jpg', 'jpeg', 'png'];
+  $ekstensi_file = explode(' .', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+  if (!in_array($ekstensi_file, $daftar_foto)) {
+  }
+  // ketika tidak ada gambar yang dipilih
+  if ($error == 4) {
+    // echo "
+    //   <script>
+    //     alert ('yang anda pilih bukan gambar!');
+    //     location.href='tambah.php';
+    //   </script>
+    // ";
+    return 'nophoto1.jpeg';
+  }
+  //cek tipe file
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "
+      <script>
+        alert ('yang anda pilih bukan gambar!');
+        location.href='tambah.php';
+      </script>
+    ";
+    return false;
+  }
+  //cek ukuran file 
+  // maksimal 10mb == 10000000
+  if ($ukuran_file > 10000000) {
+    echo "
+    <script>
+      alert ('ukuran file terlalu besar!');
+      location.href='tambah.php';
+    </script>
+  ";
+    return false;
+  }
+
+  //lolos pengecekan
+  //siap upload file
+  //generate nama file baru
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+  move_uploaded_file($tmp_file, 'img/' . $nama_file_baru);
+  return $nama_file_baru;
+}
 function tambah($data)
 {
   $conn = koneksi();
@@ -31,7 +86,12 @@ function tambah($data)
 
   $nama = htmlspecialchars($data['nama_menu']);
   $harga = htmlspecialchars($data['harga_menu']);
-  $foto = htmlspecialchars($data['foto_menu']);
+  // $foto = htmlspecialchars($data['foto_menu']);
+  // upload gambar
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
   $deskripsi = htmlspecialchars($data['deskripsi_menu']);
 
   $query = "INSERT INTO
@@ -46,6 +106,12 @@ function tambah($data)
 function hapus($id)
 {
   $conn = koneksi();
+  //menghapus folder img
+  $mhs = query("SELECT * FROM menu WHERE id_menu = $id");
+  if ($mhs['foto_menu'] != 'nophoto1.jpeg') {
+    unlink('img/' . $mhs['foto_menu']);
+  }
+
   mysqli_query($conn, "DELETE FROM menu  WHERE id_menu = $id") or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
@@ -57,8 +123,17 @@ function ubah($data)
   $id = ($data['id']);
   $nama = htmlspecialchars($data['nama_menu'] ?? '');
   $harga = htmlspecialchars($data['harga_menu'] ?? '');
-  $foto = htmlspecialchars($data['foto_menu'] ?? '');
+  $foto_menu_lama = htmlspecialchars($data['foto_menu_lama'] ?? '');
   $deskripsi = htmlspecialchars($data['deskripsi_menu'] ?? '');
+
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
+
+  if ($foto == 'nophoto1.jpeg') {
+    $foto = $foto_menu_lama;
+  }
 
   $query = "UPDATE menu SET
   nama_menu = '$nama',

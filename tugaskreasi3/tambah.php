@@ -10,7 +10,7 @@ if (isset($_POST['tambah'])) {
   if (tambah($_POST) > 0) {
     echo "<script>
     alert('data berhasil ditambahkan');
-    document.location.href ='index.php';
+    document.location.href ='product.php';
     </script>";
   } else {
     echo "data gagal ditambahkan!";
@@ -142,7 +142,7 @@ if (isset($_POST['tambah'])) {
 <body>
   <div class="tambah-container">
     <h3>Form Tambah Data Menu</h3>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       <ul>
         <li>
           <label>
@@ -156,27 +156,30 @@ if (isset($_POST['tambah'])) {
             <input type="text" name="harga_menu">
           </label>
         </li>
+        <label>
+          Deskripsi :
+          <input type="text" name="deskripsi_menu">
+        </label>
         <li>
           <label>
             Foto :
-            <input type="text" name="foto_menu">
+            <input type="file" name="foto_menu" class="foto_menu" onchange="previewImage()">
           </label>
-        </li>
-        <li>
-          <label>
-            Deskripsi :
-            <input type="text" name="deskripsi_menu">
-          </label>
+          <br><br>
+          <img src="img/nophoto1.jpeg" width="120" style="display: block;" class="img-preview">
+
         </li>
         <input type="submit" name="tambah" value="Tambah Data!">
         <div>
           <div class="back-link">
             <a href="index.php">kembali</a>
           </div>
-
+      </ul>
     </form>
-    </ul>
+
+
   </div>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

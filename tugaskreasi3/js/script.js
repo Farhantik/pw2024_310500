@@ -25,3 +25,16 @@ keyword.addEventListener('keyup', function () {
     .then((response) => (container.innerHTML = response));
 
 });
+
+// preview Image untuk Tambah dan Ubah data
+function previewImage() {
+  const foto_menu = document.querySelector('.foto_menu');
+  const imgPreview = document.querySelector('.img-preview');
+
+  const oFReader = new FileReader();
+  oFReader.readAsDataURL(foto_menu.files[0]);
+
+  oFReader.onload = function (oFREvent) {
+    imgPreview.src = oFREvent.target.result;
+  };
+}

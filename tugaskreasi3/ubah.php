@@ -155,7 +155,7 @@ if (isset($_POST['ubah'])) {
 <body>
   <div class="tambah-container">
     <h3>Form Ubah Data Menu</h3>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?= $m['id_menu']; ?>">
       <ul>
         <li>
@@ -170,11 +170,13 @@ if (isset($_POST['ubah'])) {
             <input type="text" name="harga_menu" value="<?= $m['harga_menu']; ?>">
           </label>
         </li>
+        <input type="hidden" name="foto_menu_lama" value="<?= $m['foto_menu']; ?>">
         <li>
           <label>
             Foto :
-            <input type="text" name="foto_menu" value="<?= $m['foto_menu']; ?>">
+            <input type="file" name="foto_menu" class="foto_menu" onchange="previewImage()">
           </label>
+          <img src="img/<?= $m['foto_menu']; ?>" width="120" style="display: block;" class="img-preview">
         </li>
 
         <li>
@@ -190,10 +192,11 @@ if (isset($_POST['ubah'])) {
           <a href="product.php">kembali</a>
         </div>
 
-
+      </ul>
     </form>
-    </ul>
+
   </div>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

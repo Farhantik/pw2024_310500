@@ -215,7 +215,7 @@ $m = query("SELECT * FROM menu WHERE id_menu = $id");
       <h2>Ini Halaman Detail Produk</h2>
       <br>
       <ul>
-        <img src="img/<?= $m['foto_menu']; ?>">
+        <img src="img/<?= $m['foto_menu']; ?>" width="250">
         <li>deskripsi_menu : <?= $m['deskripsi_menu']; ?></li>
         <li>id_menu :<?= $m['id_menu']; ?> </li>
         <li>nama_menu : <?= $m['nama_menu']; ?> </li>
