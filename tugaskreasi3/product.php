@@ -31,17 +31,6 @@ if (isset($_POST['cari'])) {
       background-position: center;
     }
 
-    .footer {
-      background-color: burlywood;
-      color: #fff;
-      padding: 0px;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: calc(100% - -100px);
-      box-sizing: border-box;
-    }
 
     .sidebar {
       background-color: bisque;
@@ -81,10 +70,22 @@ if (isset($_POST['cari'])) {
     }
 
     .container {
+      max-width: 900px;
+      backdrop-filter: blur(20px);
+      border: 1px solid tomato;
+      background-color: #efefef33;
+      padding: 15px;
+      overflow: auto;
+      margin: auto;
+      border-radius: 4px;
       margin-left: 300px;
-      padding: 30px;
       text-align: center;
+
+
     }
+
+
+
 
     .header {
       background-color: burlywood;
@@ -112,7 +113,7 @@ if (isset($_POST['cari'])) {
       margin-left: 200px;
       margin-top: 70px;
       padding: 20px;
-      text-align: left;
+      /* text-align: left; */
     }
 
     .content h2 {
@@ -122,19 +123,71 @@ if (isset($_POST['cari'])) {
       margin-right: 20;
     }
 
+    .content h3 {
+      text-align: right;
+      margin-top: 100;
+      margin-bottom: 20px;
+      margin-left: 10;
+      margin-right: 20;
+
+    }
+
     .content table {
       width: 100%;
+      font-size: 14px;
+      color: #444;
+      white-space: nowarp;
+      background-color: #fff;
       border-collapse: collapse;
-      background: #fff;
+
 
       /* border: 2px solid black; */
     }
 
-    .content th,
+
+    .content table th {
+      background-color: burlywood;
+      color: whitesmoke;
+    }
+
+    .content table th {
+      padding: 15px;
+    }
+
+    .content table th,
+    .content table td {
+      border: 1px solid rgb(200, 199, 199);
+      padding: 4px 7px;
+    }
+
     .content td {
       padding: 10px;
       border: 1px solid #333;
     }
+
+    .content tr>td>img {
+      display: block;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid whitesmoke;
+      box-shadow: 0 2px 6px #0003;
+    }
+
+    .content tr {
+      background-color: whitesmoke;
+      transition: 0.3s ease-in-out;
+    }
+
+    .content tr:nth-child(even) {
+      background-color: antiquewhite;
+    }
+
+    .content tr:hover {
+      filter: drop-shadow(0 2px 6px #0002);
+    }
+
 
 
     .sidebar a {
@@ -179,12 +232,38 @@ if (isset($_POST['cari'])) {
       outline: none;
     }
 
-    .ndas {
-      background-color: wheat;
-      text-align: left;
-      /* border-color: black; */
+    .back-link {
+      background-color: burlywood;
+      text-align: center;
+      color: white;
+      padding: 10px 20px;
+      display: inline-block;
+      margin: 4px 2px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      margin-top: 10px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+    }
+
+    .back-link:hover {
+      background-color: gray;
+
+    }
+
+    .back-link a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   </style>
+
 </head>
 
 <body>
@@ -209,12 +288,13 @@ if (isset($_POST['cari'])) {
     <p>Dengan Biji Kopi pilihan</p>
   </div>
   <div class="content">
-    <h2>Ini Halaman Product</h2>
-
-    <form action="" method="POST">
-      <input type="text" name="keyword" size="40" placeholder="masukkan keyword pencarian..." autocomplete="off" autofocus class="keyword">
-      <button type="submit" name="cari" class="tombol-cari">Cari!</button>
-    </form>
+    <h3>Ini Halaman Product</h3>
+    <h3>
+      <form action="" method="POST">
+        <input type="text" name="keyword" size="40" placeholder="masukkan keyword pencarian..." autocomplete="off" autofocus class="keyword">
+        <button type="submit" name="cari" class="tombol-cari">Cari!</button>
+      </form>
+    </h3>
     <br>
     <div class="container">
       <table border="1" cellpadding="10" cellspacing="0">
@@ -243,7 +323,11 @@ if (isset($_POST['cari'])) {
             <td><?= $m['nama_menu']; ?></td>
             <td><?= $m['harga_menu']; ?></td>
             <td>
-              <a href="detail.php?id=<?= $m['id_menu']; ?>">lihat detail</a>
+              <div class="back-link">
+                <a href="detail.php?id=<?= $m['id_menu']; ?>">lihat detail</a>
+
+              </div>
+
             </td>
           </tr>
         <?php endforeach; ?>
