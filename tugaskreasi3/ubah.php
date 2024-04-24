@@ -43,7 +43,7 @@ if (isset($_POST['ubah'])) {
       font-family: Arial, sans-serif;
       background: url(img/img4.jpg) no-repeat center center fixed;
       background-size: cover;
-      background-size: 100%;
+      /* background-size: 100%; */
       background-position: center;
       background-repeat: no-repeat;
       background-color: #f4f4f4;

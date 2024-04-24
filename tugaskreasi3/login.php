@@ -24,7 +24,7 @@ if (isset($_POST["login"])) {
       font-family: Arial, sans-serif;
       background: url(img/img4.jpg) no-repeat center center fixed;
       background-size: cover;
-      background-size: 100%;
+      /* background-size: 100%; */
       background-position: center;
       background-repeat: no-repeat;
       background-color: #f4f4f4;
@@ -33,7 +33,7 @@ if (isset($_POST["login"])) {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .login-container {
